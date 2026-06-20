@@ -343,12 +343,8 @@ app.add_middleware(ApiKeyMiddleware)
 # CORS — allow Next.js frontend on :3000 (and :3001 in case of port conflict)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000", 
-        "http://localhost:3001",
-        "http://10.84.83.68:3000"
-    ],
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*", "X-API-Key"],
 )
