@@ -1,0 +1,25 @@
+# Environment Variables
+.env
+.env.local
+
+# Next.js
+frontend/.next/
+frontend/node_modules/
+frontend/out/
+frontend/.vercel/
+
+# Python
+backend/__pycache__/
+backend/venv/
+backend/env/
+backend/.pytest_cache/
+*.pyc
+
+# Databases
+backend/ai_ops.db
+ai_ops.db
+backend/data/
+
+# OS Files
+.DS_Store
+Thumbs.db

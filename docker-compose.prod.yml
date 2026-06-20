@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ai_ops_backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - SQLITE_DB_PATH=/app/data/ai_ops.db
+    volumes:
+      # Mount the sqlite DB directory to a persistent volume so it survives restarts
+      - backend_data:/app/data
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ai_ops_frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./frontend/.env.local
+    environment:
+      # Automatically point to the public backend IP
+      - NEXT_PUBLIC_API_URL=http://localhost:8000 
+    depends_on:
+      - backend
+
+volumes:
+  backend_data:
