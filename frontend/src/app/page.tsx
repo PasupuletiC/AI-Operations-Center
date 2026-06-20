@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // --- Custom Fetch Wrapper ---
 const apiFetch = async (input: RequestInfo | URL, init?: RequestInit) => {
-  const apiKey = process.env.NEXT_PUBLIC_DASHBOARD_API_KEY || "";
+  const apiKey = "ops_center_secure_key_9x8q2z";
   const headers = new Headers(init?.headers);
   if (apiKey) headers.set("X-API-Key", apiKey);
   
