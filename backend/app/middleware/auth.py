@@ -18,7 +18,7 @@ PUBLIC_PATHS = {"/", "/health", "/docs", "/openapi.json", "/redoc"}
 
 class ApiKeyMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
-        api_key = os.getenv("DASHBOARD_API_KEY", "")
+        api_key = os.getenv("DASHBOARD_API_KEY", "").strip()
 
         # Dev mode: no key configured → allow everything
         if not api_key or api_key.startswith("your_"):
@@ -38,7 +38,7 @@ class ApiKeyMiddleware(BaseHTTPMiddleware):
         elif x_key:
             provided = x_key
 
-        if provided != api_key:
+        if provided.strip() != api_key:
             logger.warning(f"[Auth] Rejected request to {request.url.path} — invalid API key")
             return JSONResponse(
                 status_code=401,
