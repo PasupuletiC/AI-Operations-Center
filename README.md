@@ -84,4 +84,3 @@ docker-compose -f docker-compose.prod.yml up --build -d
 *   Database volumes are persistently mapped in Docker to prevent data loss across deployments.
 
 ---
-*Built for the Hack the Zero Stack Hackathon.*
